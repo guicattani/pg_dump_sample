@@ -12,7 +12,7 @@ import (
 
 	"github.com/cbroglie/mustache"
 	flags "github.com/jessevdk/go-flags"
-	"golang.org/x/crypto/ssh/terminal"
+	"golang.org/x/term"
 	pg "gopkg.in/pg.v4"
 	yaml "gopkg.in/yaml.v2"
 )
@@ -275,7 +275,7 @@ func dumpTable(w io.Writer, db *pg.DB, table string) error {
 
 func readPassword(username string) (string, error) {
 	fmt.Fprintf(os.Stderr, "Password for %s: ", username)
-	password, err := terminal.ReadPassword(int(syscall.Stdin))
+	password, err := term.ReadPassword(int(syscall.Stdin))
 	fmt.Print("\n")
 	return string(password), err
 }
@@ -343,6 +343,7 @@ func getTableDeps(db *pg.DB, table string) ([]string, error) {
 }
 
 func makeDump(db *pg.DB, manifest *Manifest, w io.Writer) error {
+
 	beginDump(w)
 
 	iterator := NewManifestIterator(db, manifest)
