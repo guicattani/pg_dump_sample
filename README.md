@@ -33,7 +33,7 @@ database with a small dataset for testing or development.
 The `pg_dump_sample` is written in Go. You need to [setup the Go compiler and
 setup environment](https://golang.org/doc/install) first to build it.
 
-    go get github.com/dankeder/pg_dump_sample
+    go get github.com/guicattani/pg_dump_sample
 
 If it went well you should be able to run it:
 
